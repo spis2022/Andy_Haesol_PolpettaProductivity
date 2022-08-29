@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+
+
+{% block title %}Random Number Generator{% endblock %}
+
+
+
+{% block content %}
+
+
+
+<p>Enter a maximun number for the random number generator</p>
+
+
+
+<form action="/ranNumGen_result">
+
+  <p>Maximum number: <input type="number" name="maximum" value=""></p>
+
+  <input type="submit" value="Submit">
+
+</form>
+
+
+
+{% endblock %}
