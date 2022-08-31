@@ -1,0 +1,257 @@
+{% extends "layout.html" %}
+
+
+{% block title %}Timer{% endblock %}
+
+{% block content %}
+
+<style>
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'menu menu menu main right right right'
+    'menu menu menu main right right right';
+  column-gap: 200px;
+  background-color: #2a384c;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: #2a384c;
+  text-align: center;
+  column-gap: 10px;
+  font-size: 15px;
+}
+</style>
+</head>
+<body>
+
+<div class="grid-container">
+  <div class="item2">
+ <style>
+ h4 {
+  font-size: 100%;
+} 
+ p {
+  font-size: 500%;
+}
+ h2 {
+  text-align: center;
+  }
+ h5 {
+     font-size:100%;
+}
+
+</style>
+<h1>Polpetta Timer</h1><br><br><br>
+
+
+
+      
+  
+
+
+<form>
+    
+
+<br>
+<label for="smins"></label><br>
+  <input type="number" id="smins" placeholder="Study Time(minutes)" onfocus="this.value=''" value="">
+    
+    
+  <br>
+  <br>
+  <label for="bmins"></label><br>
+    <input type="number" id="bmins" placeholder="Break Time(minutes)" onfocus="this.value='" value="">
+    <br>
+    <br>
+    <button type="button" onclick="studyingtimer()">Start Timer</button>
+    <button type="button" onclick="play()">Play</button>
+    <button type="button" onclick="pause()">Pause</button><br><br><br><br><br><br><br>
+  <form>
+  <label for="task"></label><br>
+  <input type="text" id="task" placeholder="New Task" onfocus="this.value=''" value="">
+  <br>
+  <br>
+  <button type="button" onclick="taskCreator()">Add</button>
+</form></div>
+  <div class="item3">
+<br><br><br><br><br><p id="timerOutput">0:00</p><h4 id = "typeTimer"></h4>
+<br></div>  
+  <div class="item4"><h2>Tasks</h2>
+<br>
+<h5 id="typeTask"></h5>
+  
+  </div>
+</div>
+<script>
+    var x;
+    var isPaused = false;
+// javascript for the studying minutes
+function studyingtimer() {
+
+clearInterval(x)
+    
+var startingMinutes = document.getElementById("smins").value;
+var time = startingMinutes * 60;
+document.getElementById("typeTimer").innerHTML = "FOCUS UP";
+
+if (time <= 0)
+{
+    clearInterval(x);
+    document.getElementById("timerOutput").innerHTML = "No Study Time";
+    return
+}
+
+    
+x = setInterval(function() {
+
+
+    
+ 
+  var minutes = Math.floor(time/60);
+  var seconds = time % 60;
+
+  if(seconds < 10) {
+      seconds = "0" + seconds;
+  }
+
+
+    
+ if(isPaused == false) {
+     document.getElementById("timerOutput").innerHTML = minutes + ":" + seconds;
+     if (time <= 0)
+{
+    clearInterval(x);
+    document.getElementById("timerOutput").innerHTML = "Done";
+    document.getElementById("typeTimer").innerHTML = "REST TIME";
+    breakTimer();
+}
+     time--;
+ }
+    
+
+}, 1000);
+
+}
+
+
+
+// javascript for the break minutes
+function breakTimer() {
+    var startingMinutes = document.getElementById("bmins").value;
+var time = startingMinutes * 60;
+
+if (time <= 0)
+{
+    clearInterval(x);
+    document.getElementById("timerOutput").innerHTML = "Done"
+    return
+}
+    
+x = setInterval(function() {
+
+
+    
+ 
+  var minutes = Math.floor(time/60);
+  var seconds = time % 60;
+
+   if(seconds < 10) {
+      seconds = "0" + seconds;
+  }  
+  
+if(isPaused == false) {
+     document.getElementById("timerOutput").innerHTML = minutes + ":" + seconds;
+    if (time <= 0)
+{
+    clearInterval(x);
+    document.getElementById("timerOutput").innerHTML = "Done"
+    
+}
+     time--;
+ }
+
+}, 1000);
+}
+
+function play() {
+    isPaused = false;
+}
+
+function pause() {
+    isPaused = true;
+}
+
+
+//javascript for the tasks
+function taskCreator() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("task").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+
+</script>
+
+
+
+
+
+
+
+
+ {% endblock %}

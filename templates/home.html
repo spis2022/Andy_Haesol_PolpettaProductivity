@@ -1,22 +1,100 @@
 {% extends "layout.html" %}
 
-
-
- {% block title %}Home{% endblock %}
-
-
+ {% block title %}spis©{% endblock %}
 
  {% block content %}
 
-  <h1>Home</h1>
 
-  <ul>
+<body onLoad="typeWriter();">
+  <h1 id="nice"></h1>
+   <br>
+  <br>
+  <br>
+  <br>
+  <br>  
+<style>
+    h4{
+        text-align: center;
+    }
+* {
+  box-sizing: border-box;
+}
 
-    <li><a href="/ctof">Convert Celsius to Fahrenheit</a></li>
-    <li><a href="/ftoc">Convert Fahrenheit to Celsius</a></li>
-    <li><a href="/mtokm">Covert Mile to Kilometer</a></li>
-    <li><a href="/ranNum">Random Number Generator</a></li>
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
 
-  </ul>
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
 
+<div class="row">
+  <div class="column">
+    <iframe src="https://giphy.com/embed/WMRb9p6N4mtIRtE2zr"style="width:100%"></iframe>
+      <h4>study</h4>
+    
+  </div>
+  <div class="column">
+   
+    <iframe src="https://giphy.com/embed/W0Kvpo8ePp2mfZPPdR"style="width:100%"></iframe>
+      <h4>rest</h4>
+  
+  </div>
+  <div class="column">
+
+    <iframe src="https://giphy.com/embed/JTIy6MKXfdfYDDBHV0"style="width:100%"></iframe>
+      <h4>be productive</h4>
+      
+  </div>
+</div>
+
+
+
+ 
+
+
+
+
+<script>
+var i = 0;
+var txt = 'polpetta';
+var speed = 100;
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("nice").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+    document.getElementById("nice").style.textAlign = "center";
+    document.getElementById("nice").style.fontSize = "600%";
+</script>
+
+<style>
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #2a384c;
+  color: white;
+  text-align: center;
+}
+</style> 
+<div class="footer">
+  <pre style="font-size:75%; text-align: center"> <a href="shorturl.at/DLOS7">Determine Academic Time</a>     <a href="shorturl.at/fhKS3">Determine Break Time</a>     <a href="shorturl.at/aboS9">Set Tasks</a></pre>
+</div>
+   
+     
+
+</body>
  {% endblock %}
+
+
