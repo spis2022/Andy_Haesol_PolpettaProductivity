@@ -8,12 +8,13 @@
 .item2 { grid-area: menu; }
 .item3 { grid-area: main; }
 .item4 { grid-area: right; }
+.item5 { grid-area: absright;}
 
 .grid-container {
   display: grid;
   grid-template-areas:
-    'menu menu menu main right right right'
-    'menu menu menu main right right right';
+    'menu menu main main right right'
+    'menu menu main main right right';
   column-gap: 200px;
   background-color: #2a384c;
   padding: 10px;
@@ -35,6 +36,7 @@
  h4 {
   font-size: 100%;
 } 
+
  p {
   font-size: 500%;
 }
@@ -71,7 +73,7 @@ ul li {
 
 /* Darker background-color on hover */
 ul li:hover {
-  background: #283a53;
+  background: #305073;
 }
 
 /* When clicked on strike out text */
@@ -126,13 +128,14 @@ ul li.checked::before {
   <br>
   <br>
   <label for="bmins"></label><br>
-    <input type="number" id="bmins" placeholder="Break Time(minutes)" onfocus="this.value='" value="">
+    <input type="number" id="bmins" placeholder="Break Time(minutes)" onfocus="this.value=''" value="">
     <br>
     <br>
     <button type="button" onclick="studyingtimer()">Start Timer</button>
     <button type="button" onclick="play()">Play</button>
     <button type="button" onclick="pause()">Pause</button><br><br><br><br><br><br><br>
-  <form>
+    
+<form className="task">
   <label for="myInput"></label><br>
   <input type="text" id="myInput" placeholder="New Task" onfocus="this.value=''" value="">
   <br>
@@ -275,7 +278,8 @@ for (i = 0; i < close.length; i++) {
 }
 
 // Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
+// var list = document.querySelector('ul');
+var list = document.getElementById("myUL");
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
